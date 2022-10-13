@@ -19,11 +19,15 @@
       
       <?php
         echo "</br></br>";
-        
-        if (isset( $_GET[ 'file' ]))        
-        {
-          @include($_GET[ 'file' ]);
-          echo"<div align='center'><b><h5>".$_GET[ 'file' ]."</h5></b></div> ";       
+
+        $file = $_GET['file'] ?? null;
+        $files = ['1.php', '2.php'];
+
+        if ($file && in_array($file, $files)) {
+            @include($_GET[ 'file' ]);
+            echo"<div align='center'><b><h5>".htmlentities($file)."</h5></b></div> ";
+        } else {
+            echo"<div align='center'>Not found</div> ";
         }
       ?>
    </body>
